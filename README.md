@@ -49,7 +49,9 @@ Results after two days would look like this:
 | SNAPSHOT_DATE |  PART  | SITE_KEY |
 |:-----|:--------:|------:|
 | 1/12/24   | 1 | DE |
+| 1/12/24   | 2 | DE |
 | 1/13/24   |  1  |   DE |
+| 1/13/24   |  4  |   DE |
 | 1/14/24   | 1 |    DE |
 
 
