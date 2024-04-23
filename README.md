@@ -6,7 +6,7 @@ This repository showcases a collection of SQL scripts authored by me, encompassi
 
 This repository section hosts SQL codes tailored for Data Engineering tasks rather than Analysis. The examples provided herein stem from real-world projects, offering practical insights and solutions for data manipulation and infrastructure development.
 
-## SQL Scripts 
+## -[SQL Scripts](https://github.com/Kovaczso/SnowSQL/tree/main/SQL%20Scripts) 
 
 Within this section, I maintain a repository of my SQL queries. 
 
