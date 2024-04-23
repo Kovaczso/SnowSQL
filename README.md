@@ -46,10 +46,10 @@ SELECT
 ```
 Results after two days would look like this:
 
-| Left |  Center  | Right |
+| SNAPSHOT_DATE |  PART  | SITE_KEY |
 |:-----|:--------:|------:|
-| L0   | **bold** | $1600 |
-| L1   |  `code`  |   $12 |
-| L2   | _italic_ |    $1 |
+| 1/12/24   | 1 | DE |
+| 1/13/24   |  1  |   DE |
+| 1/14/24   | 1 |    DE |
 
 
