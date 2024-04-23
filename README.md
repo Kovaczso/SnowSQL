@@ -9,11 +9,11 @@ This section of the repository contains SQL codes that will help you with bit of
 ### Creat Tasks
 A task can execute any one of the following types of SQL code:
 
-Single SQL statement
+-**Single**: SQL statement
 
-Call to a stored procedure
+-**Call**: to a stored procedure
 
-Procedural logic using Snowflake Scripting
+-**Procedural**: logic using Snowflake Scripting
 
 Tasks can be combined with table streams for continuous ELT workflows to process recently changed table rows. Streams ensure exactly once semantics for new or changed data in a table.
 
