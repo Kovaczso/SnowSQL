@@ -49,3 +49,6 @@ Results after two days would look like this:
 | 1/13/24   |  1  |   DE |
 | 1/13/24   |  4  |   DE |
 | 1/14/24   | 1 |    DE |
+
+
+## I will let you dig into the rest
