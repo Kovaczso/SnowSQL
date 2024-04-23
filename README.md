@@ -44,5 +44,12 @@ SELECT
 	SITE_KEY,
     FROM FAC_INVENTORY_RESULTS_V;
 ```
+Results after two days would look like this:
+
+| Left |  Center  | Right |
+|:-----|:--------:|------:|
+| L0   | **bold** | $1600 |
+| L1   |  `code`  |   $12 |
+| L2   | _italic_ |    $1 |
 
 
