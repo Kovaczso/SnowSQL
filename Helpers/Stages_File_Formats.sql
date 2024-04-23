@@ -1,0 +1,60 @@
+-- STAGES & FILE_FORMATS FOR CSVs
+--------------PUT STATEMENT
+PUT file://C:\desktop\data\rates\files\inbound\Exchange_Rates.csv @UPLOAD_EXCHANGE_RATES/EXCHANGE_RATES_TIBCO/2023_09 OVERWRITE=TRUE;
+
+-- This PUT statement will upload the csv file from the path into Snowflake internal stage. You can use this with VS Code.
+
+--------------CREATING STAGE
+CREATE STAGE MY_DEMO_STAGE
+FILE_FORMAT = COMMON_UTILITY.PUBLIC.CSV_FORMAT_SKIP1_HEADER;
+ALTER STAGE MY_DEMO_STAGE SET DIRECTORY = (  ENABLE = TRUE  );
+GRANT READ, WRITE ON STAGE MY_DEMO_STAGE TO ROLE DEVELOPER_ROLE ;
+
+-- This section will help to create a stage. 
+-- Note: You can define the FILE_FORMAT for the stage when creating or you can just skip line 12
+
+--------------CREATING FILE FORMAT
+CREATE FILE FORMAT SDP
+TYPE = 'CSV'
+COMPRESSION = 'AUTO'
+FIELD_DELIMITER = ','
+SKIP_HEADER = 1;
+  
+formatTypeOptions ::=
+-- If TYPE = CSV
+     COMPRESSION = AUTO | GZIP | BZ2 | BROTLI | ZSTD | DEFLATE | RAW_DEFLATE | NONE
+     RECORD_DELIMITER = '<character>' | NONE
+     FIELD_DELIMITER = '<character>' | NONE
+     FILE_EXTENSION = '<string>'
+     PARSE_HEADER = TRUE | FALSE
+     SKIP_HEADER = <integer>
+     SKIP_BLANK_LINES = TRUE | FALSE
+     DATE_FORMAT = '<string>' | AUTO
+     TIME_FORMAT = '<string>' | AUTO
+     TIMESTAMP_FORMAT = '<string>' | AUTO
+     BINARY_FORMAT = HEX | BASE64 | UTF8
+     ESCAPE = '<character>' | NONE
+     ESCAPE_UNENCLOSED_FIELD = '<character>' | NONE
+     TRIM_SPACE = TRUE | FALSE
+     FIELD_OPTIONALLY_ENCLOSED_BY = '<character>' | NONE
+     NULL_IF = ( '<string>' [ , '<string>' ... ] )
+     ERROR_ON_COLUMN_COUNT_MISMATCH = TRUE | FALSE
+     REPLACE_INVALID_CHARACTERS = TRUE | FALSE
+     EMPTY_FIELD_AS_NULL = TRUE | FALSE
+     SKIP_BYTE_ORDER_MARK = TRUE | FALSE
+     ENCODING = '<string>' | UTF8
+
+
+-------------QUERING STAGE
+SELECT 
+$1::VARCHAR(25) AS SD_PATTERN, 
+$2::VARCHAR(255) AS SD_DESCRIPTION, 
+$3::NUMBER(4,2) AS TRUCKS_PER_WEEK, 
+$4 ::NUMBER(4,2) AS TRANSPORT_DAYS
+FROM @MY_DEMO_STAGE
+(FILE_FORMAT => "COMMON_UTILITY"."PUBLIC".CSV_FORMAT_SKIP1_HEADER);
+
+---------------COPY FROM SATGE
+COPY INTO "TEST_DB"."DIMENSION"."DIM_SAD_DATA"
+FROM (SELECT $1, $2, $3, $4 FROM @SCHEMA.SDP_UPLOAD)
+FILE_FORMAT = "COMMON_UTILITY"."PUBLIC".CSV_FORMAT_SKIP2_HEADER;
