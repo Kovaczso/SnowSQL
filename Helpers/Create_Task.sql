@@ -1,6 +1,6 @@
 --Create a task that inserts new rows into a table each day
 
-create or replace task DAILY__INVENTORY_RESULTS_INSERT
+create or replace task DAILY_INVENTORY_RESULTS_INSERT
 	warehouse= TEST_WH
 	schedule='USING CRON 0 6 * * * UTC'
 	as INSERT INTO FAC_INVENTORY_RESULTS
